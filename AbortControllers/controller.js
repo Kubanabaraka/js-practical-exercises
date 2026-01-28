@@ -2,7 +2,9 @@ const controller = new AbortController();
 const signal = controller.signal;
 async function fetchData() {
   try {
-    const resp = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    const resp = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+      signal,
+    });
     const data = await resp.json();
     console.log(data);
   } catch (error) {
@@ -11,5 +13,5 @@ async function fetchData() {
 }
 setTimeout(() => {
   controller.abort();
-}, 2000);
+}, 100);
 fetchData();
